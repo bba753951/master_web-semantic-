@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block script_var %}
+  <script type="text/javascript"> 
+      var upload_url="{% url 'upload_url' %}";
+      var site_link="{% url 'site_link' %}";
+      var regulator_name = "{{ name |safe}}";
+      var tdata = {{ result |safe}};
+      var gene_exist = {{ gene_exist |safe}};
+      var userID = "{{ userID |safe}}";
+      var way = "{{ way |safe}}";
+  </script>
+{% endblock %}
+
+{% block importfile %}
+{{ block.super }}
+
+  <!--datables-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/reg_tran.css'%}">
+{% endblock %}
+
+
+{% block title %}Site Table{% endblock %}
+
+{% block main %}
+<p class="tTitle">{{ tTitle |safe }}</p>
+  <table id="example" class="display" style="width:100%">
+  </table>
+{% endblock %}  
+
+{% block jsfile %}
+  <script src="{%static 'BROWSE/browse/js/reg_tran.js'%}"></script>
+{% endblock %}

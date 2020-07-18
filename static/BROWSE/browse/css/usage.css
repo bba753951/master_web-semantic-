@@ -1,0 +1,14 @@
+
+.find_pir ,.find_hyb{
+	display:none;
+}
+.info{
+	cursor: pointer;
+}
+.mybar{
+	width:50% ;
+	margin:auto !important;
+}
+.ui.progress{
+	display:none;
+}

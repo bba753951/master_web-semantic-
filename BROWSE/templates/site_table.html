@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block script_var %}
+    <script type="text/javascript">
+        {% comment %}var site_link="{% url 'site_link' %}"{% endcomment %}
+        var tdata = {{ result.data |safe}};
+        var tcolumn = {{ result.column |safe}};
+        var tcol_num = {{ result.col_num |safe}};
+        var hybrid_info = {{ result.hybrid_info |safe}};
+        var transcript_len = {{ result.transcript_len |safe}};
+        var transcript_info = {{ result.transcript_info |safe}};
+        var pos_info = {{ result.pos_info |safe}};
+        var pos_array = {{ result.pos_array |safe}};
+        var max_level = {{ result.max_level |safe}};
+    </script>
+{% endblock %}
+{% block importfile %}
+{{ block.super }}
+
+    <!--datables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+	<!--qtip2-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet"  />
+
+	<!-- D3 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+
+	<!-- self-define -->
+    <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/site.css'%}">
+{% endblock %}
+
+{% block title %}Site Table{% endblock %}
+
+{% block main %}
+<p class="tTitle">{{ tTitle |safe}}</p>
+<div class="hint">
+<span class="gu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span>G-U Mismatch&nbsp;</span>
+<span class="ngu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span>non G-U Mismatch&nbsp;</span>
+<span class="bulge">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span>Bulge&nbsp;</span>
+<span class="tran_seq">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span>Target RNA Sequence&nbsp;</span>
+<span class="up_pos">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span>Predicted Target Site</span>
+</div>
+<div id="show_site"></div>
+
+<div id="table">
+<table id="example" class="display"></table>
+</div>
+
+{% endblock %}	
+
+{% block jsfile %}
+	<script src="{%static 'BROWSE/browse/js/site_table.js'%}"></script>
+{% endblock %}
+

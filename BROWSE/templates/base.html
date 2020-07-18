@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load staticfiles %}
+
+  {% block script_var %}{% endblock %}
+
+  {% block importfile %}
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+  <!-- semanticUI -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+  <!-- self-define -->
+  <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/base.css'%}">
+  <meta charset="utf-8">
+
+  {% endblock %}
+
+  <title>{% block title %}master_project{% endblock %}</title>
+</head>
+
+<body>
+
+  <!-- header -->
+	<div class="ui inverted menu huge squ">
+		<div class="header item">CLASH Analyst</div>
+			<div class="right menu">
+				<a class="active item" target="_blank" href="{% url 'usage' %}">
+				  <i class="upload icon"></i>
+				  Upload
+				</a>
+
+				<a class="item" target="_blank" href="{% url 'browse' %}">
+				  <i class="eye icon"></i>
+				  Browse
+				</a>
+
+				<a class="item" target="_blank" href="#">
+				  <i class="address card icon"></i>
+				  Contact
+				</a>
+			</div>
+		</div>
+	</div>
+
+  {% block main %}{% endblock %}	
+
+
+  {% comment %}<footer>{% endcomment %}
+    {% comment %}<p>©Copyright 2020 by NCKU Computational Systems Biology Lab. All rights reversed.</p>{% endcomment %}
+  {% comment %}</footer>{% endcomment %}
+
+</body>
+{% block jsfile %}{% endblock %}
+</html>

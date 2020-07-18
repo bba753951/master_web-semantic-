@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block script_var %}
+  <script type="text/javascript"> 
+  </script>
+{% endblock %}
+
+{% block importfile %}
+{{ block.super }}
+
+  <!--datables-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+{% endblock %}
+
+
+{% block title %}Confirm Mail{% endblock %}
+
+{% block main %}
+<p class="tTitle">Your analysis already start</p>
+{% endblock %}  
+
+{% block jsfile %}
+{% endblock %}

@@ -1,0 +1,109 @@
+.tTitle{
+    font-size: 3vmin;
+    font-weight: bold;
+	margin-bottom: 5%;
+}
+.axis path, .axis line{
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges; /*讓線條沒有毛邊*/
+}
+
+.axis text {
+  font-size: 15px;
+}
+
+/*.qtip { max-width: none !important;  }*/
+.qtip { max-width: 90% !important;  }
+
+
+#table{
+	overflow: auto;
+
+}
+
+.border {
+	width:90%;
+}
+table{
+	font-family: Courier New;
+}
+#table{
+	margin-top:5%;
+}
+
+.gu{
+	background-color: #63c2f4;
+	color:black;
+}
+.ngu{
+	background-color: yellow;
+	color:black;
+}
+
+.bulge{
+	background-color: #2cfb00;
+	color:black;
+}
+.up_pos{
+	background-color: red;
+}
+.tran_seq{
+	background-color: blue;
+}
+
+/*tbody{*/
+	/*white-space: nowrap;*/
+/*}*/
+.qtable{
+	color : #ffffff;
+	text-shadow: none;
+	font-size:1.5vmin;
+	text-align: center;
+	border-collapse: collapse;
+}
+.qtable th,.qtable td{
+	padding:4px 6px;
+	/*border-right:1px solid #ddd;*/
+	border-top:1px solid #ddd;
+}
+
+/*.qtable tr:last-child td{*/
+	/*border-bottom:none;*/
+/*}*/
+
+.qtable tr th:last-child,.qtable tr td:last-child{
+	border-right:none;
+}
+/*.qtable tr:first-child{*/
+	/*word-break: break-all;*/
+/*}*/
+
+.qtable tr:last-child td:last-child{
+	letter-spacing: 1.2px;
+}
+.hint{
+    display:inline-block;
+    text-align:right;
+	width:100%;
+	margin-bottom:2%;
+	padding-right: 30px;
+    font-size: 1vmin;
+}
+
+
+.hyb_btn,.gu_btn{
+	width:100%;
+}
+
+.hyb_btn:hover,.gu_btn:hover{
+	background-color: #585858;
+	background:linear-gradient(to bottom, #585858 0%, #111 100%);
+	color: white;
+	border: 1px solid #111;
+}
+
+.reg_on_hyb{
+	color:#00ffa2;
+}
+

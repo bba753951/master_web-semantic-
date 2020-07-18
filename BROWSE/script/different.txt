@@ -1,0 +1,28 @@
+pipeline
+===========================
+1. remove
+mv ${temp_path}/step5.csv ${original_name}/original.csv
+zip -r ${temp_path}/upload.zip ${original_name}/*
+
+2. Add
+mv ${temp_path}/step5.csv ${temp_path}/original.csv
+mv ${original_name}/* ${temp_path}/
+zip ${temp_path}/download.zip ${temp_path}/output*.csv
+rm ${temp_path}/output*.csv
+
+3. change step7
+    if [ -e $genefile ];then
+        echo ============= use gene file ================
+        checkNewline $genefile
+        time bash ${shell_folder}/step7.sh -i $outfile -o ${out}_gene.csv -G ${genefile}
+    fi
+
+
+step6.sh
+===========================
+1. Add
+jq -s -R -c -f ${shell_folder}/csv2json.jq ${out}_transcript_regulator.csv > ${out}_transcript_regulator.json
+jq -s -R -c -f ${shell_folder}/csv2json.jq ${out}_regulator_transcript.csv > ${out}_regulator_transcript.json
+
+
+

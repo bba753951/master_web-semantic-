@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block script_var %}
+<script>
+    var upload_url="{% url 'upload_url' %}"
+    var downloadList_url="{% url 'downloadList_url' %}"
+    var site_link="{% url 'site_link' %}"
+    var copy_example_url="{% url 'copy_example' %}"
+    var folder_id = "{{ folder_id |safe}}";
+    var RNAup_score = "{{ RNAup_score |safe}}";
+    var readCount = "{{ readCount |safe}}";
+    var RNAfold_MFE = "{{ RNAfold_MFE |safe}}";
+
+    {% comment %}var data_url="/master_project/master_media/uploadfile/aaa.txt"{% endcomment %}
+</script>
+{% endblock %}
+
+{% block importfile %}
+{{ block.super }}
+
+  <!--datables-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+	<!--qtip2-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet"  />
+
+	<!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <!-- self-define -->
+  <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/browse.css'%}">
+
+{% endblock %}
+
+{% block title %}Browse{% endblock %}
+
+
+{% block main %}
+<div class="select_container">
+    <div class="file_id">
+        <div class="ptitle"><b>Job ID:</b></div>
+        <div class="para">
+          <label>
+            <input type="text" id="folder_id">
+          </label>
+        </div>
+    </div>
+
+    {% comment %}<div class="select_way">{% endcomment %}
+
+        {% comment %}<div class="ptitle"><b>Select CLASH Analysis Algorithm:</b></div>{% endcomment %}
+        {% comment %}<div class="select para">{% endcomment %}
+            {% comment %}<select id="way">{% endcomment %}
+                {% comment %}<option value="pir">piRTarBase</option>{% endcomment %}
+                {% comment %}<option value="hyb">Hyb</option>{% endcomment %}
+                {% comment %}<option value="clan">CLAN</option>{% endcomment %}
+            {% comment %}</select>{% endcomment %}
+
+        {% comment %}</div>{% endcomment %}
+    {% comment %}</div>{% endcomment %}
+    <div class="select_type">
+
+        <div class="ptitle"><b>Browse By:</b></div>
+        <div class="select para">
+            <select id="browse">
+                <option value="regulator">Regulatory RNA Name</option>
+                <option value="transcript">Target RNA Name</option>
+            </select>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="select_score">
+
+        <div class="ptitle"><b>Only View Answers Satisfying:</b></div>
+        <div class="para">
+          <label>
+              <div id="d_rs">
+                RNAup_score &le;
+              </div>
+              <div>
+                <input type="text" id="RNAup_score" placeholder="default:None">
+              </div>
+          </label>
+        </div>
+        <div class="para">
+          <label>
+              <div id="d_rm">
+                RNAfold_MFE &le;
+              </div>
+              <div>
+                <input type="text" id="RNAfold_MFE" placeholder="default:None">
+              </div>
+          </label>
+        </div>
+        <div class="para">
+          <label>
+              <div id="d_rc">
+                Read Count &ge;
+              </div>
+              <div>
+                <input type="text" id="readCount" placeholder="default:None">
+              </div>
+          </label>
+        </div>
+    </div>
+    <button type="button" id="search">
+            <span>B</span><span>R</span><span>O</span><span>W</span><span>S</span><span>E</span>
+    </button>
+    
+
+        
+    <div class="option_container">
+        <div id="downloadList" class="option">
+            <a>
+                download output data
+            </a>
+        </div>
+        <div id="input_para" class="option">
+            see input parameter
+        </div>
+    </div>
+
+    <table id="example" class="display" style="width:100%">
+      <thead>
+        <tr>
+          <td></td>
+        </tr>
+      </thead>
+    </table>
+    </div>
+{% endblock %}  
+{% block jsfile %}
+<script src="{%static 'BROWSE/browse/js/browse.js'%}"></script>
+{% endblock %}

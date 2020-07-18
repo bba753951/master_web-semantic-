@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block script_var %}
+<script>
+    var analyse_url="{% url 'analyse_upload' %}"
+    {% comment %}var data_url="/master_project/master_media/uploadfile/aaa.txt"{% endcomment %}
+</script>
+{% endblock %}
+
+{% block importfile %}
+{{ block.super }}
+
+	<!--qtip2-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet"  />
+	<!-- D3 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+
+	<!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+  <!-- self-define -->
+  <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/usage.css'%}">
+
+{% endblock %}
+
+{% block title %}Upload{% endblock %}
+
+
+{% block main %}
+
+<!-- <==============================================================================> -->
+<div class="ui container">
+  <div class="ui segments">
+
+    <div class="ui segment header block">
+      <p>Upload file</p>
+    </div>
+    <div class="ui horizontal segments">
+      <div class="ui segment">
+        <label style="display:block"><i class="info circle icon" id="m_crf" ></i>CLASH Read File</label>
+        <input type="file" class="inputfile" id="zip_read" />
+
+        <label for="zip_read" class="ui green button">
+          <i class="ui upload icon"></i> 
+          <span>No file</span>
+        </label>
+        <a href="/master_project/master_media/read.zip">
+            <button class="ui blue icon button">
+              <i class="download icon"></i>
+              Example
+            </button>
+        </a>
+      </div>
+
+
+      <div class="ui segment">
+        <label style="display:block"><i class="info circle icon" id="m_rrf" ></i>Regulatory RNA File</label>
+        <input type="file" class="inputfile" id="zip_regulator" />
+
+        <label for="zip_regulator" class="ui green button">
+          <i class="ui upload icon"></i> 
+          <span>No file</span>
+        </label>
+        <a href="/master_project/master_media/regulator.zip">
+            <button class="ui blue icon button">
+              <i class="download icon"></i>
+              Example
+            </button>
+        </a>
+      </div>
+      <div class="ui segment">
+        <label style="display:block"><i class="info circle icon" id="m_trf" ></i>Target RNA File </label>
+        <input type="file" class="inputfile" id="zip_target" />
+
+        <label for="zip_target" class="ui green button">
+          <i class="ui upload icon"></i> 
+          <span>No file</span>
+        </label>
+        <a href="/master_project/master_media/target.zip">
+            <button class="ui blue icon button">
+              <i class="download icon"></i>
+              Example
+            </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <==============================================================================> -->
+<div class="ui hidden divider"></div>
+
+<div class="ui two column stackable grid container">
+  <div class="column">
+    <div class="ui segments height_full">
+
+      <div class="ui segment header block">
+        <p>CLASH Read Preprocessing</p>
+      </div>
+
+      <div class="ui segment">
+        <form class="ui form">
+          <div class="field">
+            <label><i class="info circle icon" id="m_tt"></i>Trimmed Tool</label>
+            <select class="ui dropdown" id="trimmed_tool">
+              <option value="trim_galore">trim_galore</option>
+              <option value="flexbar">flexbar</option>
+              <option value="fastx">fastx</option>
+            </select>
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_as"></i>Adapter Sequence</label>
+            <div class="ui corner labeled input">
+				<input type="text" id="adaptor" placeholder="e.g.,AGATCGGAAGAG">
+				<div class="ui corner red label hidde">
+					<i class="asterisk icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_bs"></i>Barcode Sequence</label>
+			<input type="text" id="barcode" placeholder="e.g.,NNNTAAGC">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_crl_g"></i>CLASH Read Length ≥</label>
+			<input type="text" id="hyb_len_g" placeholder="default:17" value="17">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_crl_l"></i>CLASH Read Length ≤</label>
+			<input type="text" id="hyb_len_l" placeholder="default:70" value="70">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_ps"></i>Phred Score (Q Score) ≥</label>
+			<input type="text" id="phred_score" placeholder="default:30" value="30">
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="column flex_c">
+    <div class="ui segments flex_item">
+
+      <div class="ui segment header block">
+        <p>Find RNA-RNA pair</p>
+      </div>
+
+      <div class="ui segment">
+        <form class="ui form">
+          <div class="field">
+            <label><i class="info circle icon" id="m_a"></i>Algorithm</label>
+            <select class="ui dropdown" id="find_way">
+              <option value="clan">CLAN</option>
+              <option value="hyb">Hyb</option>
+              <option value="pir">piRTarBase</option>
+            </select>
+          </div>
+<!-- <===================clan==============> -->
+	<div class="find_clan">
+          <div class="field">
+            <label><i class="info circle icon" id="m_fl_c"></i>Fragments Length ≥</label>
+            <input type="text" id="frag_len_c" placeholder="default:17" value="17">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_obf_c"></i>Overlap between Fragments ≤</label>
+            <input type="text" id="hyb_overlap_c" placeholder="default:4" value="4">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_hpf_c"></i>Hits per Fragment ≤</label>
+            <input type="text" id="hyb_hit_c" placeholder="default:10" value="10">
+          </div>
+	</div>
+
+<!-- <===================hyb==============> -->
+	<div class="find_hyb">
+          <div class="field">
+            <label><i class="info circle icon" id="m_hst_h"></i>Fragment Selection Threshold ≤</label>
+            <input type="text" id="hyb_thres_h" placeholder="default:0.1" value="0.1">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_obf_h"></i>Overlap/Gap between Fragments ≤</label>
+            <input type="text" id="hyb_overlap_h" placeholder="default:4" value="4">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_hpr_h"></i>Hits per Read ≤</label>
+            <input type="text" id="hyb_hit_h" placeholder="default:10" value="10">
+          </div>
+	</div>
+<!-- <===================pir==============> -->
+    <div class="find_pir">
+          <div class="field">
+            <label><i class="info circle icon" id="m_mar_p"></i>Mismatch of Aligning to Regulator ≤</label>
+            <input type="text" id="reg_mis" placeholder="default:0(max:2)" value="0">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_mat_p"></i>Mismatch of Aligning to Target ≤</label>
+            <input type="text" id="tran_mis" placeholder="default:0(max:2)" value="0">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_rsl_p"></i>Remaining Sequence Length ≥</label>
+            <input type="text" id="rem_len" placeholder="default:17" value="17">
+          </div>
+          <div class="field">
+            <label><i class="info circle icon" id="m_hpr_p"></i>Hits per Read ≤</label>
+            <input type="text" id="hyb_hit_p" placeholder="default:10" value="10">
+          </div>
+    </div>
+
+<!-- <====================================> -->
+
+        </form>
+      </div>
+
+    </div>
+    <div class="ui segments flex_item">
+
+      <div class="ui segment header block">
+        <p>Upload Info</p>
+      </div>
+
+      <div class="ui segment">
+
+        <form class="ui form">
+          <div class="field">
+            <label><i class="info circle icon" id="m_em"></i>E-mail</label>
+            <div class="ui corner labeled input">
+				<input type="text" id="mail">
+              <div class="ui corner red label">
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+<!-- <=============================== submit =======================================> -->
+<div class="ui two column centered grid">
+  <div class="centered row">
+    <button class="ui icon red inverted button" id="search">
+      <i class="paper plane icon"></i>
+      Submit
+    </button>
+  </div>
+</div>
+<!-- <============================= progress ============================================> -->
+<div class="ui hidden divider"></div>
+<div class="ui active progress green mybar">
+  <div class="bar" style="width:17%">
+    <div class="progress">17%</div>
+  </div>
+  <div class="label">Uploading Files ...</div>
+
+
+</div>
+<!-- <==============================================================================> -->
+    
+{% endblock %}  
+{% block jsfile %}
+<script src="{%static 'BROWSE/browse/js/usage.js'%}"></script>
+{% endblock %}

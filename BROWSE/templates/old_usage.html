@@ -1,0 +1,345 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block script_var %}
+<script>
+    var usage_url="{% url 'upload_usage' %}"
+    {% comment %}var data_url="/master_project/master_media/uploadfile/aaa.txt"{% endcomment %}
+</script>
+{% endblock %}
+
+{% block importfile %}
+{{ block.super }}
+
+	<!--qtip2-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet"  />
+	<!-- D3 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+
+	<!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+  <!-- self-define -->
+  <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/usage.css'%}">
+
+{% endblock %}
+
+{% block title %}Browse{% endblock %}
+
+
+{% block main %}
+<h2>START ANALYSIS</h2>
+<div class="outter">
+<div class="left-opt">
+    <h3>PARAMETER</h3>
+<!-- <==============================================================================> -->
+<div class="file-opt lshow">
+    <div class="line">
+        <div class="left_para">
+        <label id="d_de">Download Example:</label>
+        </div>
+        <div class="right_para">
+            <a href="/master_project/master_media/usage_example.zip">
+            <div class="btn">
+                download 
+                {% comment %}<a href="/master_project/master_media/usage_example.zip">(download example data)</a>{% endcomment %}
+            </div>
+            </a>
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_uf">Upload File:</label>
+        </div>
+        <div class="right_para">
+            <div class="file btn btn1">
+                <span>no file</span><input type="file" name="zip_file">
+            </div>
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_em">E-mail:</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="mail">
+        </div>
+    </div>
+    <div class="next_btn">
+        <button type="button">NEXT</button>
+    </div>
+
+</div>
+
+<!-- <==============================================================================> -->
+<div class="preprocess-opt lshow">
+    <div class="line">
+        <div class="left_para">
+        <label id="d_as">Adapter Sequence:</label>
+        <p class="explain">(e.g.,AGATCGGAAGAG)</p>
+        </div>
+        <div class="right_para">
+        <input type="text" id="adaptor">
+        </div>
+    </div>
+
+    <div class="line">
+        <div class="left_para">
+        <label id="d_hl_g"> CLASH Read Length &ge; </label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_len_g" placeholder="default:17" value="17">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_hl_l"> CLASH Read Length &le; </label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_len_l" placeholder="default:70">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_ps"> Phred Score (Q Score) &ge; </label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="phred_score" placeholder="default:30">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_tt">Trimmed Tool:</label>
+        </div>
+        <div class="right_para">
+            <div class="select">
+            <select id="trimmed_tool">
+                <option value="flexbar">flexbar</option>
+                <option value="fastx">fastx</option>
+                <option value="trim_galore">trim_galore</option>
+            </select>
+            </div>
+        </div>
+    </div>
+    <div class="next_btn">
+        <button type="button">NEXT</button>
+    </div>
+</div>
+
+<!-- <==============================================================================> -->
+<div class="quality-opt lshow">
+    <div class="line">
+        <div class="left_para">
+        <label id="d_rc">Read Count &ge;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="readCount" placeholder="defualt:None">
+        </div>
+    </div>
+
+    <div class="line">
+        <div class="left_para">
+        <label id="d_rm">RNAfold_MFE &le; </label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="RNAfold_MFE" placeholder="default:None">
+        </div>
+    </div>
+    <div class="next_btn">
+        <button type="button">NEXT</button>
+    </div>
+</div>
+<!-- <==============================================================================> -->
+<div class="find-opt lshow">
+<!-- <===================pir==============> -->
+     <p class="findWay"> piRTarBase</p>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_atrm_p">Mismatch of Aligning to Regulator &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="reg_mis" placeholder="default:0(max:2)">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_attm_p">Mismatch of Aligning to Target &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="tran_mis" placeholder="default:0(max:2)">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_rsl_p">Remaining Sequence Length &ge;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="rem_len" placeholder="default:17">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_hph_p">Hits per Read &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_hit_p" placeholder="default:10">
+        </div>
+    </div>
+
+<!-- <===================hyb==============> -->
+
+     <p class="findWay"> Hyb</p>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_hst_h">Fragment Selection Threshold &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_thres_h" placeholder="default:0.1">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_obf_h">Overlap/Gap between Fragments &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_overlap_h" placeholder="default:4">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_hph_h">Hits per Read &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_hit_h" placeholder="default:10">
+        </div>
+    </div>
+
+<!-- <===================clan==============> -->
+     <p class="findWay"> CLAN</p>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_fl_c">Fragments Length &ge;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="frag_len_c" placeholder="default:17">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_obf_c">Overlap between Fragments &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_overlap_c" placeholder="default:4">
+        </div>
+    </div>
+    <div class="line">
+        <div class="left_para">
+        <label id="d_hpf_c">Hits per Fragment &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="hyb_hit_c" placeholder="default:10">
+        </div>
+    </div>
+    <div class="next_btn">
+        <button type="button">NEXT</button>
+    </div>
+</div>
+<!-- <==============================================================================> -->
+<div class="rnaup-opt lshow">
+    <div class="line">
+        <div class="left_para">
+        <label id="d_rs">RNAup_score &le;</label>
+        </div>
+        <div class="right_para">
+        <input type="text" id="RNAup_score" placeholder="default:None">
+        </div>
+    </div>
+
+    <div>
+        <a href="#example"><button type="button" id="search">SUBMIT</button></a>
+    </div>
+    <div id="pbar">
+        <div id="myProgress" class="progress">
+            <div id="myBar" class="bar"></div>
+        </div>
+        <div id="Percentage" class="percentage"></div>
+    </div>
+</div>
+</div>
+<!-- <==============================================================================> -->
+<div class="right-opt">
+    <h3>FLOWCHART &nbsp; (CLICK)</h3>
+    <div class="right-flow">
+    <div id="flow_upload" class="divFlow rshow rclick">
+        Upload File
+    </div>
+    <div id="arrow4" class="arrow">
+      <svg version="1.1" 
+          id="svg-arrow-down" 
+          width="100" height="50"
+          xmlns="http://www.w3.org/2000/svg" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          viewBox="0 -7 22 35" 
+          xml:space="preserve">
+          <polygon class="arrow" style="fill:#000000;" points="20.58,11.584 12.004,20.158 12.004,0 9.996,0 9.996,20.158 1.42,11.584 0,13.004 11,24,22,13.004 "></polygon>
+        </svg>
+    </div>
+
+    <div id="flow_preprocess" class="divFlow rshow">
+        CLASH Read Preprocessing
+    </div>
+    <div id="arrow1" class="arrow">
+      <svg version="1.1" 
+          id="svg-arrow-down" 
+          width="100" height="50"
+          xmlns="http://www.w3.org/2000/svg" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          viewBox="0 -7 22 35" 
+          xml:space="preserve">
+          <polygon class="arrow" style="fill:#000000;" points="20.58,11.584 12.004,20.158 12.004,0 9.996,0 9.996,20.158 1.42,11.584 0,13.004 11,24,22,13.004 "></polygon>
+        </svg>
+
+
+    </div>
+    <div id="flow_quality" class="divFlow rshow">
+        CLASH Read Quality Control
+    </div>
+    <div id="arrow2" class="arrow">
+      <svg version="1.1" 
+          id="svg-arrow-down" 
+          width="100" height="50"
+          xmlns="http://www.w3.org/2000/svg" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          viewBox="0 -7 22 35" 
+          xml:space="preserve">
+          <polygon class="arrow" style="fill:#000000;" points="20.58,11.584 12.004,20.158 12.004,0 9.996,0 9.996,20.158 1.42,11.584 0,13.004 11,24,22,13.004 "></polygon>
+        </svg>
+    </div>
+    <div id="flow_pair" class="divFlow rshow">
+        Find Pairs' Info
+    </div>
+    <div id="arrow3" class="arrow">
+      <svg version="1.1" 
+          id="svg-arrow-down" 
+          width="100" height="50"
+          xmlns="http://www.w3.org/2000/svg" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" 
+          viewBox="0 -7 22 35" 
+          xml:space="preserve">
+          <polygon class="arrow" style="fill:#000000;" points="20.58,11.584 12.004,20.158 12.004,0 9.996,0 9.996,20.158 1.42,11.584 0,13.004 11,24,22,13.004 "></polygon>
+        </svg>
+    </div>
+    <div id="flow_rnaup" class="divFlow rshow">
+        RNAup Analyse
+    </div>
+    </div>
+</div>
+
+</div>
+    
+{% endblock %}  
+{% block jsfile %}
+<script src="{%static 'BROWSE/browse/js/usage.js'%}"></script>
+{% endblock %}

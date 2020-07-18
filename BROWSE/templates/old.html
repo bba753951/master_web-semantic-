@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <title> browse</title>
+    <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/browse.css'%}">
+
+    <link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet">
+    {% comment %}<link rel="shortcut icon" href="{%static 'stock/guess/images/dog_favicon.ico'%}" />{% endcomment %}
+  </head>
+  <body>
+  <div id="container">
+    <header>
+        <h1>TarBase</h1>
+    </header>
+        <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Browse</a></li>
+        <li><a href="#">Tutorial</a></li>
+        <li><a href="#">Download</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <form>
+        <input type="search" name="q" placeholder="Search query">
+        <input type="submit" value="Go!">
+      </form>
+    </nav>
+
+<main>
+<h2>select</h2>
+<div class="select_container">
+    <div class="select_flex">
+        <div class="select_content"><b>Select Browse type:</b></div>
+        <div class="select_content">
+            <input type="radio" name="type" value="regulator" id="regulator">
+            <label for="regulator">Regulator</label>
+        </div>
+        <div class="select_content">
+            <input type="radio" name="type" value="transcript" id="transcript">
+            <label for="transcript">Transcript</label>
+        </div>
+    </div>
+    <div class="select_flex">
+        <div class="select_content"><b>Select RNA type:</b></div>
+        <div class="select_content">
+            <select id="search_regulator_type">
+				<option name="trf_type" value="piRNA">piRNA</option>
+				<option name="trf_type" value="tRF">tRF</option>
+			</select>
+        </div>
+        <div class="select_content">
+            <div id="search_transcript_type">
+                <label for="asRNA"><input id="asRNA" type="checkbox" value="asRNA">asRNA</label>
+                <label for="lincRNA"><input id="lincRNA" type="checkbox" value="lincRNA">lincRNA</label>
+                <label for="miRNA"><input id="miRNA" type="checkbox" value="miRNA">miRNA</label>
+                <label for="miRNA_primary_transcript"><input id="miRNA_primary_transcript" type="checkbox" value="miRNA_primary_transcript">miRNA_primary_transcript</label>
+                <label for="mRNA"><input id="mRNA" type="checkbox" value="mRNA">mRNA</label>
+                <label for="nc_primary_transcript"><input id="nc_primary_transcript" type="checkbox" value="nc_primary_transcript">nc_primary_transcript</label>
+                <label for="ncRNA"><input id="ncRNA" type="checkbox" value="ncRNA">ncRNA</label>
+                <label for="piRNA"><input id="piRNA" type="checkbox" value="piRNA">piRNA</label>
+                <label for="pre_miRNA"><input id="pre_miRNA" type="checkbox" value="pre_miRNA">pre_miRNA</label>
+                <label for="pseudogenic_transcripts"><input id="pseudogenic_transcripts" type="checkbox" value="pseudogenic_transcripts">pseudogenic_transcripts</label>
+                <label for="rRNA"><input id="rRNA" type="checkbox" value="rRNA">rRNA</label>
+                <label for="tRNA"><input id="tRNA" type="checkbox" value="tRNA">tRNA</label>
+                <label for="repeats"><input id="repeats" type="checkbox" value="repeats">repeats</label>
+                <label for="scRNA"><input id="scRNA" type="checkbox" value="scRNA">scRNA</label>
+                <label for="snoRNA"><input id="snoRNA" type="checkbox" value="snoRNA">snoRNA</label>
+                <label for="snRNA"><input id="snRNA" type="checkbox" value="snRNA">snRNA</label>
+                <label for="transposable_element_ncRNA"><input id="transposable_element_ncRNA" type="checkbox" value="transposable_element_ncRNA">transposable_element_ncRNA</label>
+                <label for="transposons_transcript"><input id="transposons_transcript" type="checkbox" value="transposons_transcript">transposons_transcript</label>
+                <label for="transposons"><input id="transposons" type="checkbox" value="transposons">transposons</label>
+			</div>
+		</div>
+    </div>
+    <div class="select_btn">
+        <button type="button" class="btn" id="search">Browse</button>
+    </div>
+</div>
+
+</main>
+
+
+    <footer>
+      <p>©Copyright 2020 by NCKU Computational Systems Biology Lab. All rights reversed.</p>
+    </footer>
+    
+    </div>
+      </body>
+
+      <script src="{%static 'BROWSE/browse/js/browse.js'%}"></script>
+    </html>
