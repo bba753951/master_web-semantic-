@@ -650,6 +650,7 @@ def confirmMail(request):
         data.to_csv(info_path+"info.csv",header=0)
         command="bash {}schedule.sh".format(script_folder)
         subprocess.call(command, shell=True)
-    return render_to_response('confirm.html',locals())
+    # return render_to_response('confirm.html',locals())
+    return JsonResponse({"data":"ok","userID":folder_id})
 
 

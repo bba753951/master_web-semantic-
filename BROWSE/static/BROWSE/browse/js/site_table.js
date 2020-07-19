@@ -38,7 +38,9 @@ function addClickTip(array_info,id_name,i,my_pos,at_pos){
             //target: $('#'+id_name+i,'*:not("[type=button]")'),
             target: $('#'+id_name+i),
             effect: function(offset) {
-                var id_text = $("#"+id_name+i).attr("class").split(" ")[1]
+                var class_array=$("#"+id_name+i).attr("class").split(" ")
+                var id_text=class_array[class_array.length-1]
+                //var id_text = $("#"+id_name+i).attr("class").split(" ")[1]
                 $("#"+id_name+i).text(id_text);
                 $("#"+id_name+i).removeClass(id_text);
             },
@@ -110,7 +112,7 @@ var svg = d3.select("#show_site")
   .append("svg")
   .attr("width", width)
   .attr("height", height)
-  .attr("style","background:#ecf0f3;")
+  .attr("style","background:#f3f4f5;")
   //.attr("viewbox","0,0,"+10000+","+10000)
   //.attr("preserveAspectRatio","xMidYMax slice");
   
@@ -191,7 +193,7 @@ $('#example').DataTable({
             "aTargets":[1],
             "mData": function ( source, type, val  ) {return source},
             "mRender" : function(data,type,full){
-                value = '<button type="button" class="hyb_btn" id="hybrid'+data[0]+'">'+data[1]+'</button>';
+                value = '<button class="ui button mini blue hyb_btn" id="hybrid'+data[0]+'">'+data[1]+'</button>';
                 //value = '<button type="button" class="hyb_btn" id="'+data[0]+'">'+data[1]+'</button>';
                 return value
             }
@@ -214,7 +216,7 @@ function renderTip(){
     $(".hyb_btn").each(function(){
         var id = $(this).attr("id").slice(6);
         console.log(id);
-        addClickTip(hybrid_info,"hybrid",id,'top left','bottom right');
+        addClickTip(hybrid_info,"hybrid",id,'top left','bottom center');
     })
 }
 renderTip();

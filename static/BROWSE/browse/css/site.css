@@ -1,8 +1,4 @@
-.tTitle{
-    font-size: 3vmin;
-    font-weight: bold;
-	margin-bottom: 5%;
-}
+/*---------- d3 ------------*/
 .axis path, .axis line{
   fill: none;
   stroke: black;
@@ -12,24 +8,23 @@
 .axis text {
   font-size: 15px;
 }
+#show_site {
+    text-align:center;
 
-/*.qtip { max-width: none !important;  }*/
+}
+/*---------- qtip ------------*/
 .qtip { max-width: 90% !important;  }
 
 
-#table{
-	overflow: auto;
 
-}
-
-.border {
-	width:90%;
-}
-table{
-	font-family: Courier New;
-}
-#table{
-	margin-top:5%;
+/*-------- legend --------*/
+.hint{
+    display:inline-block;
+    text-align:right;
+	width:100%;
+	margin-bottom:2%;
+	padding-right: 1.5rem;
+    font-size: 1vmin;
 }
 
 .gu{
@@ -51,10 +46,7 @@ table{
 .tran_seq{
 	background-color: blue;
 }
-
-/*tbody{*/
-	/*white-space: nowrap;*/
-/*}*/
+/*-------- d3 hover table --------*/
 .qtable{
 	color : #ffffff;
 	text-shadow: none;
@@ -68,42 +60,28 @@ table{
 	border-top:1px solid #ddd;
 }
 
-/*.qtable tr:last-child td{*/
-	/*border-bottom:none;*/
-/*}*/
 
 .qtable tr th:last-child,.qtable tr td:last-child{
 	border-right:none;
 }
-/*.qtable tr:first-child{*/
-	/*word-break: break-all;*/
-/*}*/
 
 .qtable tr:last-child td:last-child{
 	letter-spacing: 1.2px;
 }
-.hint{
-    display:inline-block;
-    text-align:right;
-	width:100%;
-	margin-bottom:2%;
-	padding-right: 30px;
-    font-size: 1vmin;
+/*-------- result table --------*/
+
+#table{
+	overflow: auto;
 }
 
-
-.hyb_btn,.gu_btn{
-	width:100%;
+table{
+	font-family: Courier New;
 }
 
-.hyb_btn:hover,.gu_btn:hover{
-	background-color: #585858;
-	background:linear-gradient(to bottom, #585858 0%, #111 100%);
-	color: white;
-	border: 1px solid #111;
-}
-
+/*hyb_btn*/
 .reg_on_hyb{
 	color:#00ffa2;
 }
-
+.hyb_btn{
+	width:70%;
+}

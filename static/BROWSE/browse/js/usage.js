@@ -47,7 +47,7 @@ function addClickTip(name,info_table){
         },
 		position: {
 			//target: $('#show_site'),
-            my:'bottom center',
+            my:'bottom left',
             at:'top center'
 		},
         style: {
@@ -64,6 +64,8 @@ function addClickTip(name,info_table){
 
 function uploadfile() {
     console.log("click");
+	var upload_state=0;
+    var userid="";
     //var file1=$("input[name='zip_file']").get(0).files[0];
     var files_data = new FormData();
     //files_data.append("zip_file",file1);
@@ -129,7 +131,9 @@ function uploadfile() {
         contentType:false,
 		success: function (result) {
             console.log("ok");
-                    },
+			upload_state=1;	
+            userid=result.userID;
+		},
 		error : function() {
             Swal.fire({
                   icon: 'error',
@@ -137,6 +141,7 @@ function uploadfile() {
                   text: 'Something went wrong!',
                 
             })
+			upload_state=0;	
 		},
 		xhr: function(){
         // get the native XmlHttpRequest object
@@ -157,7 +162,30 @@ function uploadfile() {
                   icon: 'success',
                   title: 'Check your E-amil',
                   html: 'You need to recive a mail from us and <span class="stress_red">click the link</span> to start analysis',
-            })
+            }).then((result) => {
+			  if (result.value) {
+				console.log("try to start: "+userid);
+				if (userid != ""){
+
+					$.ajax({
+						type: "GET",
+						url: confirm_url+"?id="+userid ,
+						success: function (result) {
+							console.log("ok");
+						},
+						error : function() {
+							Swal.fire({
+								  icon: 'error',
+								  title: 'Oops...',
+								  text: 'Analysis can not start',
+								
+							})
+						},
+					});
+				}
+
+			  }
+			})
             $(".mybar .label").text("Success");
         } ;
 

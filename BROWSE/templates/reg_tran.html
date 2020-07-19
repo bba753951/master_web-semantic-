@@ -28,11 +28,23 @@
 {% block title %}Site Table{% endblock %}
 
 {% block main %}
-<p class="tTitle">{{ tTitle |safe }}</p>
-  <table id="example" class="display" style="width:100%">
-  </table>
-{% endblock %}  
 
+
+  <div class="ui container">
+    <div class="ui segments">
+
+      <div class="ui segment header block">
+        <p><i class="table icon"></i>Target Detail</p>
+      </div>
+      <div class="ui segment">
+		  <p class="tTitle">{{ tTitle |safe }}</p>
+		  <table id="example" class="display" style="width:100%">
+		  </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}  
 {% block jsfile %}
   <script src="{%static 'BROWSE/browse/js/reg_tran.js'%}"></script>
 {% endblock %}

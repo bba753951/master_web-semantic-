@@ -73,19 +73,30 @@ function addHoverTip(name,info_table){
 
 function uploadfile() {
 
-    $("#search").addClass( "load");
+    $('.ui.dimmer').dimmer('show');
+    $("#input_para,#browse_result").css("display","block");
 
     var data_url;
+    var mtyep;
 
     var files_data = new FormData();
 
     $("input[type='text']").each(function(){
         files_data.append($(this).attr("id"),$(this).val());
     });
-    $("select").each(function(){
-        files_data.append($(this).attr("id"),$(this).val());
-    })
-    mtype=$("#browse").val();
+    //$("select").each(function(){
+        //files_data.append($(this).attr("id"),$(this).val());
+    //})
+    if ($(".ui.dropdown .text").text() === "Regulatory RNA Name"){
+        files_data.append("browse","regulator");
+        mtype="regulator"
+
+    }else{
+        files_data.append("browse","transcript");
+        mtype="transcript"
+    }
+    //mtype=$("#browse").val();
+
 
 
 	$.ajax({
@@ -133,14 +144,15 @@ function uploadfile() {
                 ],
                 "order": [[ col+1, 'desc'  ]],
                 "initComplete": function() {
-                    $("#search").removeClass( "load");
+                    $('.ui.dimmer').dimmer('hide');
                     $("#downloadList a").attr("href",downloadList_url+"?id="+result.userID+"&way="+way);
                     $(".option").css("display","block");
-                    infoHover(result.userID);
+                    //infoHover(result.userID);
                 }
             });
                     },
 		error : function() {
+            $('.ui.dimmer').dimmer('hide');
             Swal.fire({
                   icon: 'error',
                   title: 'Oops...',
@@ -153,7 +165,6 @@ function uploadfile() {
                     //$('#example').html("");
                 //}
             //})
-            $("#search").removeClass( "load");
 		}
 	});
 
@@ -183,11 +194,33 @@ if(readCount != ""){
 
 
 // add Hover Info
-var d_rc="<span class='info'>Select \"read count\" of CLASH read (greater equal)</span>";
-var d_rm="<span class='info'>Use \"RNAfold\" (from ViennaRNA package) to calculate \"minimum free energy\" (mfe) of CLASH reads.<br><br>This option selects the \"RNAfold_MFE\" column (less equal).<br><br>You can use None to not select</span>";
-var d_rs="<span class='info'>Use \"RNAup\" (from ViennaRNA package) to calculate the \"thermodynamics\" of regulatory RNA and target RNA ,and find the binding site.<br><br>This option selects the \"RNAup_score\" column (less equal).<br><br>You can use None to not select</span>";
-addHoverTip("#d_rs",d_rs);
-addHoverTip("#d_rm",d_rm);
-addHoverTip("#d_rc",d_rc);
+var d_rc="<span class='info'><span class='stress_red'>The more the better</span></span>";
+//var d_rm="<span class='info'>Use \"RNAfold\" (from ViennaRNA package) to calculate \"minimum free energy\" (mfe) of CLASH reads.<br><br>This o 
+//ption selects the \"RNAfold_MFE\" column (less equal).<br><br>You can use None to not select</span>";
+//var d_rs="<span class='info'>Use \"RNAup\" (from ViennaRNA package) to calculate the \"thermodynamics\" of regulatory RNA and target RNA ,and find the binding site.<br><br>This option selects the \"RNAup_score\" column (less equal).<br><br>You can use None to not select</span>";
+var d_rs="<span class='info'>The \"thermodynamics\" of regulatory RNA and target RNA. <br> <span class='stress_red'>The less the better.</span><br> Recommand from -5 to -10. </span>";
+
+var d_ji="<span class='info'>To recognize your analysis result</span>";
+
+//addHoverTip("#d_rs",d_rs);
+//addHoverTip("#d_rm",d_rm);
+//addHoverTip("#d_rc",d_rc);
 
 
+// semanticUI dropdown
+$('.ui.dropdown').dropdown();
+
+// filter parameter popup
+function popFocus(name,content,action){
+    $(name).attr("data-html",content)
+    $(name)
+        .popup({
+                on: action
+              
+        })
+    ;
+}
+
+popFocus("#folder_id",d_ji,"focus")
+popFocus("#readCount",d_rc,"focus")
+popFocus("#RNAup_score",d_rs,"focus")

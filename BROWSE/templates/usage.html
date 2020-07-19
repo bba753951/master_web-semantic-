@@ -5,6 +5,7 @@
 {% block script_var %}
 <script>
     var analyse_url="{% url 'analyse_upload' %}"
+    var confirm_url="{% url 'confirmMail' %}"
     {% comment %}var data_url="/master_project/master_media/uploadfile/aaa.txt"{% endcomment %}
 </script>
 {% endblock %}
@@ -257,8 +258,8 @@
 <!-- <============================= progress ============================================> -->
 <div class="ui hidden divider"></div>
 <div class="ui active progress green mybar">
-  <div class="bar" style="width:17%">
-    <div class="progress">17%</div>
+  <div class="bar" style="width:0%">
+    <div class="progress">0%</div>
   </div>
   <div class="label">Uploading Files ...</div>
 

@@ -38,102 +38,200 @@
 
 
 {% block main %}
-<div class="select_container">
-    <div class="file_id">
-        <div class="ptitle"><b>Job ID:</b></div>
-        <div class="para">
-          <label>
-            <input type="text" id="folder_id">
-          </label>
+  {% comment %}<!------------browse filter-------->{% endcomment %}
+  <div class="ui container">
+    <div class="ui segments">
+
+      <div class="ui segment header block">
+        <p><i class="filter icon"></i>Browse Filter</p>
+      </div>
+      <div class="ui segment">
+        <div class="ui centered stackable four column grid container">
+          <div class="four wide column">
+            <div class="ui labeled input fluid">
+              <div class="ui label">
+                Job ID
+              </div>
+                <input type="text" id="folder_id">
+            </div>
+          </div>
+          <div class="five wide column">
+
+
+        <div class="ui buttons fluid">
+          <div class="ui button">Browse by</div>
+          <div class="ui floating dropdown icon basic button btn_border">
+            <span class="text">Regulatory RNA Name</span>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div class="item">Rergulatory RNA Name</div>
+              <div class="item">Target RNA Name</div>
+              
+            </div>
+          </div>
         </div>
+
+          </div>
+          <div class="three wide column">
+            <div class="ui labeled input fluid">
+              <div class="ui label">
+                RNAup Score ≤
+              </div>
+              <input type="text" placeholder="default:0" value="0" id="RNAup_score">
+            </div>            
+          </div>
+          <div class="three wide column">
+            <div class="ui labeled fluid input">
+              <div class="ui label">
+                Read Count ≥
+              </div>
+
+              <input type="text" placeholder="default:0" value="0" id="readCount">
+            </div>     
+          </div>
+          <div class="centered row">
+            <button class="ui icon green button" id="search">
+              <i class="paper plane icon"></i>
+              Browse
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+{% comment %}<!------------ Input Parameter -------->  {% endcomment %}
+<div class="ui hidden divider"></div>
+  <div class="ui container" id="input_para">
+    <div class="ui segments">
+      <div class="ui segment header block">
+        <p><i class="eye icon"></i>Input Parameter</p>
+      </div>
+      <div class="ui segment">            
 
-    {% comment %}<div class="select_way">{% endcomment %}
 
-        {% comment %}<div class="ptitle"><b>Select CLASH Analysis Algorithm:</b></div>{% endcomment %}
-        {% comment %}<div class="select para">{% endcomment %}
-            {% comment %}<select id="way">{% endcomment %}
-                {% comment %}<option value="pir">piRTarBase</option>{% endcomment %}
-                {% comment %}<option value="hyb">Hyb</option>{% endcomment %}
-                {% comment %}<option value="clan">CLAN</option>{% endcomment %}
-            {% comment %}</select>{% endcomment %}
-
-        {% comment %}</div>{% endcomment %}
-    {% comment %}</div>{% endcomment %}
-    <div class="select_type">
-
-        <div class="ptitle"><b>Browse By:</b></div>
-        <div class="select para">
-            <select id="browse">
-                <option value="regulator">Regulatory RNA Name</option>
-                <option value="transcript">Target RNA Name</option>
-            </select>
-
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Trimmed Tool
+          </a>
+          <div class="ui basic button">
+            flexbar
+          </div>
         </div>
-
-
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Adapter Sequence
+          </a>
+          <div class="ui basic button">
+            ATCAGCTGATGCGAC
+          </div>
+        </div>
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Barcode Sequence
+          </a>
+          <div class="ui basic button">
+            NNNCGAC
+          </div>
+        </div>
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            CLASH Read Length ≥
+          </a>
+          <div class="ui basic button">
+            17
+          </div>
+        </div>
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            CLASH Read Length ≤
+          </a>
+          <div class="ui basic button">
+            70
+          </div>
+        </div> 
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Phred Score ≥
+          </a>
+          <div class="ui basic button">
+            30
+          </div>
+        </div> 
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Algorithm
+          </a>
+          <div class="ui basic button">
+            CLAN
+          </div>
+        </div> 
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Fragments Length ≥
+          </a>
+          <div class="ui basic button">
+            17
+          </div>
+        </div> 
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Overlap between Fragments ≤
+          </a>
+          <div class="ui basic button">
+            4
+          </div>
+        </div> 
+        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
+          <a class="ui right pointing label">
+            Hits per Fragment ≤
+          </a>
+          <div class="ui basic button">
+            10
+          </div>
+        </div> 
+      </div>
     </div>
+  </div>
+  
+{% comment %}<!------------browse result-------->  {% endcomment %}
+  <div class="ui hidden divider"></div>
+  <div class="ui container" id="browse_result">
+    <div class="ui segments">
+      <div class="ui segment header block">
+        <p><i class="eye icon"></i>Browse Result</p>
+      </div>
+      <div class="ui segment"> 
+        <table id="example" class="display" style="width:100%">
+          <thead>
+            <tr>
+              <td></td>
+            </tr>
+          </thead>
+        </table>
 
-
-    <div class="select_score">
-
-        <div class="ptitle"><b>Only View Answers Satisfying:</b></div>
-        <div class="para">
-          <label>
-              <div id="d_rs">
-                RNAup_score &le;
-              </div>
-              <div>
-                <input type="text" id="RNAup_score" placeholder="default:None">
-              </div>
-          </label>
-        </div>
-        <div class="para">
-          <label>
-              <div id="d_rm">
-                RNAfold_MFE &le;
-              </div>
-              <div>
-                <input type="text" id="RNAfold_MFE" placeholder="default:None">
-              </div>
-          </label>
-        </div>
-        <div class="para">
-          <label>
-              <div id="d_rc">
-                Read Count &ge;
-              </div>
-              <div>
-                <input type="text" id="readCount" placeholder="default:None">
-              </div>
-          </label>
-        </div>
+          <div class="ui hidden divider"></div>
+          <div style="text-align:center" id="downloadList">
+              <a>
+              <button class="ui blue icon button" id="downloadList">
+                <i class="download icon"></i> Result
+              </button>
+              </a>
+          </div>
+      </div>
     </div>
-    <button type="button" id="search">
-            <span>B</span><span>R</span><span>O</span><span>W</span><span>S</span><span>E</span>
-    </button>
-    
+  </div>
 
-        
-    <div class="option_container">
-        <div id="downloadList" class="option">
-            <a>
-                download output data
-            </a>
-        </div>
-        <div id="input_para" class="option">
-            see input parameter
-        </div>
-    </div>
 
-    <table id="example" class="display" style="width:100%">
-      <thead>
-        <tr>
-          <td></td>
-        </tr>
-      </thead>
-    </table>
-    </div>
+
+{% comment %}<!------------waiting-------->  {% endcomment %}
+
+  <div class="ui page dimmer">
+    <div class="ui text loader large">Loading</div>
+  </div>
+
+
+
+
 {% endblock %}  
 {% block jsfile %}
 <script src="{%static 'BROWSE/browse/js/browse.js'%}"></script>

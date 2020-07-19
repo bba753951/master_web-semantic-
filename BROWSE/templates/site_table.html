@@ -36,24 +36,60 @@
 {% block title %}Site Table{% endblock %}
 
 {% block main %}
-<p class="tTitle">{{ tTitle |safe}}</p>
-<div class="hint">
-<span class="gu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span>G-U Mismatch&nbsp;</span>
-<span class="ngu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span>non G-U Mismatch&nbsp;</span>
-<span class="bulge">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span>Bulge&nbsp;</span>
-<span class="tran_seq">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span>Target RNA Sequence&nbsp;</span>
-<span class="up_pos">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span>Predicted Target Site</span>
-</div>
-<div id="show_site"></div>
+  <div class="ui container">
+    <div class="ui segments">
 
-<div id="table">
-<table id="example" class="display"></table>
-</div>
+      <div class="ui segment header block">
+        <p><i class="chart bar icon"></i>Target Detail</p>
+      </div>
+      <div class="ui segment">
+        <p class="tTitle">{{ tTitle |safe}}</p>
+          <div class="ui hidden divider"></div>
+        <div class="hint">
+            <span class="gu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>G-U Mismatch&nbsp;</span>
+            <span class="ngu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>non G-U Mismatch&nbsp;</span>
+            <span class="bulge">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>Bulge&nbsp;</span>
+            <span class="tran_seq">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>Target RNA Sequence&nbsp;</span>
+            <span class="up_pos">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>Predicted Target Site</span>
+        </div>
+        <div id="show_site"></div>
+      </div>
+    </div>
+  </div>
+  <div class="ui hidden divider"></div>
+
+  <div class="ui container">
+    <div class="ui segments">
+
+      <div class="ui segment header block">
+        <p><i class="table icon"></i>Target Detail</p>
+      </div>
+      <div class="ui segment">
+        <p class="tTitle">{{ tTitle |safe}}</p>
+          <div class="ui hidden divider"></div>
+        <div class="hint">
+            <span class="gu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>G-U Mismatch&nbsp;</span>
+            <span class="ngu">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>non G-U Mismatch&nbsp;</span>
+            <span class="bulge">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>Bulge&nbsp;</span>
+        </div>
+            <div id="table">
+                <table id="example" class="display"></table>
+            </div>
+		  </table>
+      </div>
+    </div>
+  </div>
+
+
+
 
 {% endblock %}	
 
