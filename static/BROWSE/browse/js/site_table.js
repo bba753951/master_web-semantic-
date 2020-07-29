@@ -1,3 +1,5 @@
+$("#nav_browse").addClass("active")
+
 // ---------------- function -------------------
 //function addtable(array_info,i){
 function addtable(array_info,i){

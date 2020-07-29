@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block script_var %}
+  <script type="text/javascript"> 
+
+  </script>
+{% endblock %}
+
+{% block importfile %}
+{{ block.super }}
+
+  <!--datables-->
+  <link rel="stylesheet" type="text/css" href="{%static 'BROWSE/browse/css/contact.css'%}">
+{% endblock %}
+
+
+{% block title %}Contact{% endblock %}
+
+{% block main %}
+  <div class="ui container">
+    <div class="ui segments">
+
+      <div class="ui segment huge header block">
+        <p>Contact us</p>
+      </div>
+      <div class="ui segment">
+        <p class="ui medium header">For website technical issues, please contact Dr. Wei-Sheng Wu.</p>
+        <div class="ui segments">
+
+          <div class="ui segment large header block">
+
+            <p><i class="address card icon"></i>Wei-Sheng Wu</p>
+          </div>
+          <div class="ui segment">
+            <p class="ui small header"> Professor</p>
+            <p><i class="graduation cap icon"></i>Department of Electrical Engineering</p>
+
+            <p><i class="university icon"></i> National Cheng Kung University</p>
+
+            <p><i class="envelope icon"></i> wessonwu@mail.ncku.edu.tw</p>
+          </div>
+        </div>
+        <p class="ui medium header">For biological issues, please contact Dr. Heng-Chi Lee.</p>
+        <div class="ui segments">
+          <div class="ui segment large header block">
+            <p ><i class="address card icon"></i>Heng-Chi Lee</p>
+          </div>
+          <div class="ui segment">
+            <p class="ui small header">Assistant Professor</p>
+            <p><i class="graduation cap icon"></i>Department of Molecular Genetics and Cell Biology</p>
+
+            <p><i class="university icon"></i>University of Chicago</p>
+
+            <p><i class="envelope icon"></i> hengchilee@uchicago.edu</p>
+
+            <a href="http://www.hcleelab.org/" target="_blank"><i class="linkify icon"></i>Lee lab website</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="ui segments">
+
+      <div class="ui segment huge header block">
+        <p >Co-authors</p>
+      </div>
+      <div class="ui segment">
+
+        <div class="ui segments">
+
+          <div class="ui segment large header block">
+
+            <p><i class="address card icon"></i>Pin-Hao Chen</p>
+          </div>
+          <div class="ui segment">
+            <p class="ui small header">M.S. Student</p>
+            <p><i class="graduation cap icon"></i>Department of Electrical Engineering</p>
+
+            <p><i class="university icon"></i>National Cheng Kung University</p>
+
+            <p><i class="envelope icon"></i>bba753951@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="ui segments">
+          <div class="ui segment large header block">
+            <p><i class="address card icon"></i>Jordan Brown</p>
+          </div>
+          <div class="ui segment">
+            <p class="ui small header">PhD Student</p>
+            <p><i class="graduation cap icon"></i>Department of Molecular Genetics and Cell Biology</p>
+
+            <p><i class="university icon"></i>University of Chicago</p>
+
+            <p><i class="envelope icon"></i>jordanbrown@uchicago.edu</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+{% endblock %}  
+{% block jsfile %}
+  <script src="{%static 'BROWSE/browse/js/contact.js'%}"></script>
+{% endblock %}

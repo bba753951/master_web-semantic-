@@ -1,6 +1,8 @@
+$("#nav_browse").addClass("active")
+
 column1=[
         {"title":"Target RNA Name"},
-        {"title":"# of CLASH Evidences"},
+        {"title":"# of chimera reads"},
         {"title":"Target Details"}
     ];
 
@@ -26,7 +28,7 @@ $('#example').DataTable({
                 if(data[gene_exist+1]+""==="0")
                     value = "show details"
                 else
-                    value = '<a target="_blank" href="'+site_link+"?name="+data[gene_exist]+"&regulator="+regulator_name+"&userID="+userID+"&way="+way+"&count="+data[gene_exist+1]+'&mtype=transcript&sfile=ori_reg">show details</a>';
+                    value = '<a target="_blank" href="'+site_link+"?name="+data[gene_exist]+"&regulator="+regulator_name+"&userID="+userID+"&way="+way+"&count="+data[gene_exist+1]+'&mtype=transcript&sfile=ori_reg">show interaction</a>';
                 return value
             }
         }

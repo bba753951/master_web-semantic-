@@ -43,11 +43,11 @@
     <div class="ui segments">
 
       <div class="ui segment header block">
-        <p><i class="filter icon"></i>Browse Filter</p>
+        <p><i class="filter icon"></i>Enter JobID and display settings</p>
       </div>
       <div class="ui segment">
         <div class="ui centered stackable four column grid container">
-          <div class="four wide column">
+          <div class="three wide column">
             <div class="ui labeled input fluid">
               <div class="ui label">
                 Job ID
@@ -61,28 +61,31 @@
         <div class="ui buttons fluid">
           <div class="ui button">Browse by</div>
           <div class="ui floating dropdown icon basic button btn_border">
-            <span class="text">Regulatory RNA Name</span>
+            <span class="text">Small RNA name</span>
             <i class="dropdown icon"></i>
             <div class="menu">
-              <div class="item">Rergulatory RNA Name</div>
-              <div class="item">Target RNA Name</div>
+              <div class="item">Small RNA name</div>
+              <div class="item">Target RNA name</div>
               
             </div>
           </div>
         </div>
 
           </div>
-          <div class="three wide column">
+          <div class="four wide column">
             <div class="ui labeled input fluid">
               <div class="ui label">
+
+                <i class="info circle icon" id="m_rs"></i>
                 RNAup Score ≤
               </div>
               <input type="text" placeholder="default:0" value="0" id="RNAup_score">
             </div>            
           </div>
-          <div class="three wide column">
+          <div class="four wide column">
             <div class="ui labeled fluid input">
               <div class="ui label">
+                <i class="info circle icon" id="m_rc"></i>
                 Read Count ≥
               </div>
 
@@ -101,104 +104,47 @@
   </div>
 {% comment %}<!------------ Input Parameter -------->  {% endcomment %}
 <div class="ui hidden divider"></div>
-  <div class="ui container" id="input_para">
+<div class="ui two column stackable grid container" id="all_para">
+    <div class="column" id="input_para">
+        <div class="ui segments">
+          <div class="ui segment header block">
+            <p><i class="eye icon"></i>Processing settings and algorithm selection</p>
+          </div>
+          <div class="ui segment">            
+              <table class="ui celled table">
+                  <tbody id="input_parameter">
+                  </tbody>
+              </table>
+          </div>
+        </div>
+    </div>
+  
+  <div class="ui column" id="output_para">
     <div class="ui segments">
       <div class="ui segment header block">
-        <p><i class="eye icon"></i>Input Parameter</p>
+        <p><i class="eye icon"></i>Output summary</p>
       </div>
       <div class="ui segment">            
-
-
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Trimmed Tool
-          </a>
-          <div class="ui basic button">
-            flexbar
-          </div>
-        </div>
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Adapter Sequence
-          </a>
-          <div class="ui basic button">
-            ATCAGCTGATGCGAC
-          </div>
-        </div>
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Barcode Sequence
-          </a>
-          <div class="ui basic button">
-            NNNCGAC
-          </div>
-        </div>
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            CLASH Read Length ≥
-          </a>
-          <div class="ui basic button">
-            17
-          </div>
-        </div>
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            CLASH Read Length ≤
-          </a>
-          <div class="ui basic button">
-            70
-          </div>
-        </div> 
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Phred Score ≥
-          </a>
-          <div class="ui basic button">
-            30
-          </div>
-        </div> 
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Algorithm
-          </a>
-          <div class="ui basic button">
-            CLAN
-          </div>
-        </div> 
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Fragments Length ≥
-          </a>
-          <div class="ui basic button">
-            17
-          </div>
-        </div> 
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Overlap between Fragments ≤
-          </a>
-          <div class="ui basic button">
-            4
-          </div>
-        </div> 
-        <div class="ui left labeled button btn_margin_top mini" tabindex="0">
-          <a class="ui right pointing label">
-            Hits per Fragment ≤
-          </a>
-          <div class="ui basic button">
-            10
-          </div>
-        </div> 
+              <table class="ui celled table">
+                  <tbody id="output_summary">
+                  </tbody>
+              </table>
       </div>
     </div>
   </div>
-  
+</div>
+
 {% comment %}<!------------browse result-------->  {% endcomment %}
   <div class="ui hidden divider"></div>
   <div class="ui container" id="browse_result">
     <div class="ui segments">
       <div class="ui segment header block">
-        <p><i class="eye icon"></i>Browse Result</p>
+          <span><i class="eye icon"></i>Browse result</span>
+        
+          <a id="downloadList" style="float:right">
+              <i class="download icon" ></i>Result
+              <div class="ui inline mini loader" id="load_result"></div>
+          </a>
       </div>
       <div class="ui segment"> 
         <table id="example" class="display" style="width:100%">
@@ -208,15 +154,16 @@
             </tr>
           </thead>
         </table>
+		<div style="text-align:center">
+          <a id="downloadList_b">
+          <button class="ui blue icon button">
+           
+            <i class="download icon"></i> Result
+             <div class="ui inline mini loader white inverted" id="load_result_bottom"></div>
+          </button>
+          </a>
+        </div>
 
-          <div class="ui hidden divider"></div>
-          <div style="text-align:center" id="downloadList">
-              <a>
-              <button class="ui blue icon button" id="downloadList">
-                <i class="download icon"></i> Result
-              </button>
-              </a>
-          </div>
       </div>
     </div>
   </div>
@@ -226,7 +173,7 @@
 {% comment %}<!------------waiting-------->  {% endcomment %}
 
   <div class="ui page dimmer">
-    <div class="ui text loader large">Loading</div>
+    <div class="ui text loader large">Loading...</div>
   </div>
 
 

@@ -53,3 +53,11 @@ tbody{
   color:#f00a0a;
 }
 
+
+@media only screen and (max-width: 1060px) {
+	.ui.stackable.menu .right.menu {
+		    flex-direction: column;
+			  
+	}
+	
+}

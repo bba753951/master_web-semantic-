@@ -37,57 +37,150 @@
   <div class="ui segments">
 
     <div class="ui segment header block">
-      <p>Upload file</p>
+      Upload file
+		<div class="ui toggle checkbox" style="float:right" id="file_check">
+          <input type="checkbox" name="upload_check">
+          <label>Reanalyze old data</label>
+        </div>
     </div>
-    <div class="ui horizontal segments">
+    <div class="ui horizontal segments" id="self_upload">
       <div class="ui segment">
-        <label style="display:block"><i class="info circle icon" id="m_crf" ></i>CLASH Read File</label>
-        <input type="file" class="inputfile" id="zip_read" />
+        <label style="display:block"><i class="info circle icon" id="m_crf" ></i>CLASH read file &nbsp;&nbsp;
+            <a href="/master_project/master_media/celegans.zip" title="C.elegans PIWI CLASH data Shen et al, 2018 (11.69% of data)" class="smallFont">
+                  <i class="download icon"></i>
+                  Example1
+            </a>
+            <a href="/master_project/master_media/human.zip" title="Human AGO CLASH data (8.65% of data)" style="margin-left: 0.5rem;" class="smallFont">
+                  <i class="download icon"></i>
+                  Example2
+            </a>
+        </label>
 
         <label for="zip_read" class="ui green button">
           <i class="ui upload icon"></i> 
-          <span>No file</span>
+          <span>Upload here</span>
         </label>
-        <a href="/master_project/master_media/read.zip">
-            <button class="ui blue icon button">
-              <i class="download icon"></i>
-              Example
-            </button>
-        </a>
+        <input type="file" class="inputfile" id="zip_read" />
       </div>
 
 
       <div class="ui segment">
-        <label style="display:block"><i class="info circle icon" id="m_rrf" ></i>Regulatory RNA File</label>
+        <label style="display:block"><i class="info circle icon" id="m_rrf" ></i>Small RNA file &nbsp;&nbsp;
+            <a href="/master_project/master_media/reference/celegans/regulator.zip" title="C.elegans piRNAs (source: WS230)" class="smallFont">
+                  <i class="download icon"></i>
+                  Example1
+            </a>
+            <a href="/master_project/master_media/reference/human/miRNA.zip" title="Human miRNAs (source: MirBase22)" style="margin-left: 0.5rem;" class="smallFont">
+                  <i class="download icon"></i>
+                  Example2
+            </a>
+        </label>
+
+
+        <div class="ui right labeled icon dropdown button blue ">
+          <i class="dropdown icon"></i>
+          <input type="hidden" name="reg_select">
+          <span class="text">Select data</span>
+          <div class="menu">
+            <div class="header">
+              <i class="tags icon"></i>
+              Select data
+            </div>
+            <div class="divider"></div>
+
+            <div class="item" data-value="0">
+              Upload by yourself
+            </div>
+            <div class="item">
+              <i class="dropdown icon"></i>
+              <span class="text">Human</span>
+              <div class="right menu">
+                <div class="item" data-value="human/miRNA">Human/miRNA</div>
+              </div>
+            </div>
+            
+            <div class="item">
+              <i class="dropdown icon"></i>
+              <span class="text">C.elegans</span>
+              <div class="right menu">
+                <div class="item" data-value="celegans/piRNA">C.elegans/piRNA</div>
+                <div class="item" data-value="celegans/miRNA">C.elegans/miRNA</div>
+              </div>      
+            </div>
+          </div>
+        </div>
+        <label for="zip_regulator" class="ui green button hidde">
+          <i class="ui upload icon"></i> 
+          <span>Upload here</span>
+        </label>
         <input type="file" class="inputfile" id="zip_regulator" />
-
-        <label for="zip_regulator" class="ui green button">
-          <i class="ui upload icon"></i> 
-          <span>No file</span>
-        </label>
-        <a href="/master_project/master_media/regulator.zip">
-            <button class="ui blue icon button">
-              <i class="download icon"></i>
-              Example
-            </button>
-        </a>
       </div>
-      <div class="ui segment">
-        <label style="display:block"><i class="info circle icon" id="m_trf" ></i>Target RNA File </label>
-        <input type="file" class="inputfile" id="zip_target" />
 
-        <label for="zip_target" class="ui green button">
-          <i class="ui upload icon"></i> 
-          <span>No file</span>
+
+      <div class="ui segment">
+        <label style="display:block"><i class="info circle icon" id="m_trf" ></i>Target RNA file &nbsp;&nbsp; 
+            <a href="/master_project/master_media/reference/celegans/mRNA.zip" title="C.elegans mRNAs (source: WS230)" class="smallFont">
+                  <i class="download icon"></i>
+                  Example1
+            </a>
+            <a href="/master_project/master_media/reference/human/mRNA.zip" title="Human mRNAs (source: Ensembl build GRCh38.p13)" style="margin-left: 0.5rem;" class="smallFont">
+                  <i class="download icon"></i>
+                  Example2
+            </a>
         </label>
-        <a href="/master_project/master_media/target.zip">
-            <button class="ui blue icon button">
-              <i class="download icon"></i>
-              Example
-            </button>
-        </a>
+
+
+        <div class="ui right labeled icon dropdown button blue ">
+          <i class="dropdown icon"></i>
+          <input type="hidden" name="target_select">
+          <span class="text">Select data</span>
+          <div class="menu">
+            <div class="header">
+              <i class="tags icon"></i>
+              Select data
+            </div>
+            <div class="divider"></div>
+
+            <div class="item" data-value="0">
+              Upload by yourself
+            </div>
+            <div class="item">
+              <i class="dropdown icon"></i>
+              <span class="text">Human</span>
+              <div class="right menu">
+                <div class="item" data-value="human/mRNA">Human/mRNA</div>
+              </div>
+            </div>
+            
+            <div class="item">
+              <i class="dropdown icon"></i>
+              <span class="text">C.elegans</span>
+              <div class="right menu">
+                <div class="item" data-value="celegans/mRNA">C.elegans/mRNA</div>
+              </div>      
+            </div>
+          </div>
+        </div>
+
+        <label for="zip_target" class="ui green button hidde">
+          <i class="ui upload icon"></i> 
+          <span>Upload here</span>
+        </label>
+        <input type="file" class="inputfile" id="zip_target" />
       </div>
     </div>
+    <div class="ui segment hidde" id="use_old" style="text-align:center">
+
+      <div class="ui labeled input" >
+        <div class="ui label green">
+        <label><i class="info circle icon" id="m_ji"></i>
+          Job ID
+        </div>
+        <input type="text" placeholder="" id="use_old_id">
+      </div>
+
+    </div>
+
   </div>
 </div>
 
@@ -99,13 +192,25 @@
     <div class="ui segments height_full">
 
       <div class="ui segment header block">
-        <p>CLASH Read Preprocessing</p>
+        CLASH read preprocessing
+		<div class="ui toggle checkbox" style="float:right" id="prep_check">
+          <input type="checkbox" name="public">
+          <label>FASTQ file already trimmed</label>
+        </div>
       </div>
 
-      <div class="ui segment">
+      <div class="ui segment prep">
         <form class="ui form">
           <div class="field">
-            <label><i class="info circle icon" id="m_tt"></i>Trimmed Tool</label>
+            <label><i class="info circle icon" id="m_bs"></i>Barcode sequence (optional)</label>
+			<input type="text" id="barcode" placeholder="e.g.,NNNTAAGC">
+          </div>
+        </form>
+      </div>
+      <div class="ui segment prep">
+        <form class="ui form">
+          <div class="field">
+            <label><i class="info circle icon" id="m_tt"></i>Trimming tool</label>
             <select class="ui dropdown" id="trimmed_tool">
               <option value="trim_galore">trim_galore</option>
               <option value="flexbar">flexbar</option>
@@ -113,7 +218,7 @@
             </select>
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_as"></i>Adapter Sequence</label>
+              <label><i class="info circle icon" id="m_as"></i>3' adapter sequence <span class="optional_">(optional)</span></label>
             <div class="ui corner labeled input">
 				<input type="text" id="adaptor" placeholder="e.g.,AGATCGGAAGAG">
 				<div class="ui corner red label hidde">
@@ -122,19 +227,15 @@
             </div>
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_bs"></i>Barcode Sequence</label>
-			<input type="text" id="barcode" placeholder="e.g.,NNNTAAGC">
-          </div>
-          <div class="field">
-            <label><i class="info circle icon" id="m_crl_g"></i>CLASH Read Length ≥</label>
+            <label><i class="info circle icon" id="m_crl_g"></i>Minimum required read length ≥</label>
 			<input type="text" id="hyb_len_g" placeholder="default:17" value="17">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_crl_l"></i>CLASH Read Length ≤</label>
+            <label><i class="info circle icon" id="m_crl_l"></i>Maximum required read length ≤</label>
 			<input type="text" id="hyb_len_l" placeholder="default:70" value="70">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_ps"></i>Phred Score (Q Score) ≥</label>
+            <label><i class="info circle icon" id="m_ps"></i>Phred score (Q score) ≥</label>
 			<input type="text" id="phred_score" placeholder="default:30" value="30">
           </div>
         </form>
@@ -154,7 +255,7 @@
         <form class="ui form">
           <div class="field">
             <label><i class="info circle icon" id="m_a"></i>Algorithm</label>
-            <select class="ui dropdown" id="find_way">
+            <select class="ui dropdown" id="findway">
               <option value="clan">CLAN</option>
               <option value="hyb">Hyb</option>
               <option value="pir">piRTarBase</option>
@@ -163,15 +264,15 @@
 <!-- <===================clan==============> -->
 	<div class="find_clan">
           <div class="field">
-            <label><i class="info circle icon" id="m_fl_c"></i>Fragments Length ≥</label>
+            <label><i class="info circle icon" id="m_fl_c"></i>Minimum length for each RNA fragment ≥</label>
             <input type="text" id="frag_len_c" placeholder="default:17" value="17">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_obf_c"></i>Overlap between Fragments ≤</label>
+            <label><i class="info circle icon" id="m_obf_c"></i>Overlap between two RNA fragments ≤</label>
             <input type="text" id="hyb_overlap_c" placeholder="default:4" value="4">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_hpf_c"></i>Hits per Fragment ≤</label>
+            <label><i class="info circle icon" id="m_hpf_c"></i>Hits per fragment ≤</label>
             <input type="text" id="hyb_hit_c" placeholder="default:10" value="10">
           </div>
 	</div>
@@ -179,34 +280,34 @@
 <!-- <===================hyb==============> -->
 	<div class="find_hyb">
           <div class="field">
-            <label><i class="info circle icon" id="m_hst_h"></i>Fragment Selection Threshold ≤</label>
+            <label><i class="info circle icon" id="m_hst_h"></i>Fragment selection threshold ≤</label>
             <input type="text" id="hyb_thres_h" placeholder="default:0.1" value="0.1">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_obf_h"></i>Overlap/Gap between Fragments ≤</label>
+            <label><i class="info circle icon" id="m_obf_h"></i>Overlap/Gap between two RNA fragments ≤</label>
             <input type="text" id="hyb_overlap_h" placeholder="default:4" value="4">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_hpr_h"></i>Hits per Read ≤</label>
+            <label><i class="info circle icon" id="m_hpr_h"></i>Hits per read ≤</label>
             <input type="text" id="hyb_hit_h" placeholder="default:10" value="10">
           </div>
 	</div>
 <!-- <===================pir==============> -->
     <div class="find_pir">
           <div class="field">
-            <label><i class="info circle icon" id="m_mar_p"></i>Mismatch of Aligning to Regulator ≤</label>
+            <label><i class="info circle icon" id="m_mar_p"></i>Mismatch of aligning to small RNA ≤</label>
             <input type="text" id="reg_mis" placeholder="default:0(max:2)" value="0">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_mat_p"></i>Mismatch of Aligning to Target ≤</label>
+            <label><i class="info circle icon" id="m_mat_p"></i>Mismatch of aligning to target RNA ≤</label>
             <input type="text" id="tran_mis" placeholder="default:0(max:2)" value="0">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_rsl_p"></i>Remaining Sequence Length ≥</label>
+            <label><i class="info circle icon" id="m_rsl_p"></i>Remaining sequence length ≥</label>
             <input type="text" id="rem_len" placeholder="default:17" value="17">
           </div>
           <div class="field">
-            <label><i class="info circle icon" id="m_hpr_p"></i>Hits per Read ≤</label>
+            <label><i class="info circle icon" id="m_hpr_p"></i>Hits per read ≤</label>
             <input type="text" id="hyb_hit_p" placeholder="default:10" value="10">
           </div>
     </div>
@@ -220,19 +321,19 @@
     <div class="ui segments flex_item">
 
       <div class="ui segment header block">
-        <p>Upload Info</p>
+        <p>User information </p>
       </div>
 
       <div class="ui segment">
 
         <form class="ui form">
           <div class="field">
-            <label><i class="info circle icon" id="m_em"></i>E-mail</label>
+            <label><i class="info circle icon" id="m_em"></i>Provide an E-mail address to be notified when your results are ready as analysis can take a long time (optional)</label>
             <div class="ui corner labeled input">
 				<input type="text" id="mail">
-              <div class="ui corner red label">
-                <i class="asterisk icon"></i>
-              </div>
+              {% comment %}<div class="ui corner red label">{% endcomment %}
+                {% comment %}<i class="asterisk icon"></i>{% endcomment %}
+              {% comment %}</div>{% endcomment %}
             </div>
           </div>
         </form>

@@ -12,3 +12,7 @@
 .ui.progress{
 	display:none;
 }
+
+.smallFont{
+	font-size: 0.8rem;
+}

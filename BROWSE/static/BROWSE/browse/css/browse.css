@@ -6,6 +6,10 @@
   margin-top:1em !important;
 }
 
-#input_para,#browse_result{
+#input_para,#browse_result,#output_para{
 	display:none;
+}
+
+#output_summary,#input_parameter{
+	text-align: left;
 }

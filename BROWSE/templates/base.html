@@ -27,27 +27,27 @@
 <body>
 
   <!-- header -->
-	<div class="ui inverted menu huge squ">
-		<div class="header item">CLASH Analyst</div>
-			<div class="right menu">
-				<a class="active item" target="_blank" href="{% url 'usage' %}">
-				  <i class="upload icon"></i>
-				  Upload
-				</a>
+	<div class="ui inverted menu huge squ stackable">
+        <div class="header item">CLASH Analyst: A web server to identify RNA chimera reads from CLASH sequencing data</div>
+        <div class="right menu">
+            <a class="item" target="_blank" href="{% url 'usage' %}" id="nav_upload">
+              <i class="upload icon"></i>
+              Input
+            </a>
 
-				<a class="item" target="_blank" href="{% url 'browse' %}">
-				  <i class="eye icon"></i>
-				  Browse
-				</a>
+            <a class="item" target="_blank" href="{% url 'browse' %}" id="nav_browse">
+              <i class="eye icon"></i>
+              Result
+            </a>
 
-				<a class="item" target="_blank" href="#">
-				  <i class="address card icon"></i>
-				  Contact
-				</a>
-			</div>
-		</div>
+            <a class="item" target="_blank" href="{% url 'contact' %}"  id="nav_contact">
+              <i class="address card icon"></i>
+              Contact
+            </a>
+        </div>
 	</div>
 
+    <div class="ui hidden divider"></div>
   {% block main %}{% endblock %}	
 
 

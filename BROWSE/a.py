@@ -1,7 +1,7 @@
-import os
-if os.path.isfile("a.csv"):
-    print(1)
-else:
-    print(2)
-with open("a.csv","r")as fp:
-    a=fp.read()
+import pandas as pd
+
+
+data=pd.read_csv("../media/info/info.csv",header=None,index_col=0)
+print(type(data.loc["P8hYgZ6L7F",2]))
+
+

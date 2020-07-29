@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^upload_usage', views.usage_upload, name='upload_usage'),
     url(r'^confirmMail', views.confirmMail, name='confirmMail'),
     url(r'^analyse', views.analyse, name='analyse'),
+    url(r'^contact', views.contact, name='contact'),
     url(r'^upload_analyse', views.analyse_upload, name='analyse_upload'),
 ]
