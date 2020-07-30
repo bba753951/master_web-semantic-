@@ -222,7 +222,7 @@ function uploadfile() {
                     Swal.fire({
                           icon: 'success',
                           title: 'Job ID: <span class="stress_red">'+userid+ '</span>',
-                          html: 'It may take a few hours to a day before the analyses are completed.<br><br> Please use the following <a href="http://cosbi7.ee.ncku.edu.tw/master_project/browse?id='+userid+'" target="_blank"><i class="linkify icon"></i>link</a> or job ID (<span class="stress_red">'+userid+ '</span>) to check the status of your analyses.',
+                          html: 'It may take a few hours to a day before the analyses are completed.<br><br> Please use the following <a href="/master_project/browse?id='+userid+'" target="_blank"><i class="linkify icon"></i>link</a> or job ID (<span class="stress_red">'+userid+ '</span>) to check the status of your analyses.',
                     }).then((result) => {
                       if (result.value) {
                         $(".mybar").css("display","none");

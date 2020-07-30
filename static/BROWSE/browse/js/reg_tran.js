@@ -2,7 +2,7 @@ $("#nav_browse").addClass("active")
 
 column1=[
         {"title":"Target RNA Name"},
-        {"title":"# of chimera reads"},
+        {"title":"# Chimera Reads"},
         {"title":"Target Details"}
     ];
 

@@ -6,7 +6,8 @@
   margin-top:1em !important;
 }
 
-#input_para,#browse_result,#output_para{
+/*#input_para,#browse_result,#output_para{*/
+#all_para,#browse_result{
 	display:none;
 }
 

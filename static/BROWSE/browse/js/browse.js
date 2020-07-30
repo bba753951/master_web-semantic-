@@ -196,7 +196,8 @@ function uploadfile() {
 		success: function (result) {
             if (result.jobState === "1"){
                 $('.ui.dimmer').dimmer('hide');
-                $("#input_para,#browse_result,#output_para").css("display","none");
+                $("#all_para,#browse_result").css("display","none");
+                //$("#input_para,#browse_result,#output_para").css("display","none");
                 Swal.fire({
                       icon: 'error',
                       title: 'Oops...',
@@ -206,7 +207,8 @@ function uploadfile() {
 
             }else if(result.jobState === "2"){
                 $('.ui.dimmer').dimmer('hide');
-                $("#input_para,#browse_result,#output_para").css("display","none");
+                $("#all_para,#browse_result").css("display","none");
+                //$("#input_para,#browse_result,#output_para").css("display","none");
                 Swal.fire({
                       icon: 'error',
                       title: 'Oops...',
@@ -216,7 +218,8 @@ function uploadfile() {
 
             }else if(result.jobState === "0"){
                 $('.ui.dimmer').dimmer('hide');
-                $("#input_para,#browse_result,#output_para").css("display","none");
+                $("#all_para,#browse_result").css("display","none");
+                //$("#input_para,#browse_result,#output_para").css("display","none");
                 Swal.fire({
                       icon: 'error',
                       title: 'Oops...',
@@ -225,7 +228,8 @@ function uploadfile() {
                 })
 
             }else if(result.jobState === "3"){
-                $("#input_para,#browse_result,#output_para").css("display","block");
+                //$("#input_para,#browse_result,#output_para").css("display","block");
+                $("#all_para,#browse_result").css("display","block");
                 var way=result.way;
                 console.log(result);
                 var col = 0;
@@ -286,7 +290,8 @@ function uploadfile() {
         },
 		error : function() {
             $('.ui.dimmer').dimmer('hide');
-            $("#input_para,#browse_result,#output_para").css("display","none");
+            //$("#input_para,#browse_result,#output_para").css("display","none");
+            $("#all_para,#browse_result").css("display","none");
             Swal.fire({
                   icon: 'error',
                   title: 'Oops...',

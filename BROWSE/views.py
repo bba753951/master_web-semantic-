@@ -131,7 +131,7 @@ def uploadfile(request):
             else:
                 print("gene_file not exist")
                 column_name=[{"title":"Target RNA Name"},
-                             {"title":"# chimera reads"},
+                             {"title":"# Chimera Reads"},
                              {"title":"Target Details"}]
 
         # calculate output summary
@@ -156,8 +156,8 @@ def uploadfile(request):
                 </tr>"
 
         infoTxt=infoDiv.format("# reads provided",summary[0])
-        infoTxt=infoTxt + infoDiv.format("# read trimmed",summary[1])
-        infoTxt=infoTxt + infoDiv.format("# unique read trimmed",summary[2])
+        infoTxt=infoTxt + infoDiv.format("# reads trimmed",summary[1])
+        infoTxt=infoTxt + infoDiv.format("# unique reads trimmed",summary[2])
         infoTxt=infoTxt + infoDiv.format("# reads with identified chimera",summary[3])
         infoTxt=infoTxt + infoDiv.format("# identified RNA-RNA pairs",summary[4])
 
@@ -731,7 +731,7 @@ def analyse_upload(request):
         infoTxt=infoTxt + infoDiv.format("Adapter Sequence",adaptor)
         infoTxt=infoTxt + infoDiv.format("CLASH Read Length &ge;",hyb_len_g)
         infoTxt=infoTxt + infoDiv.format("CLASH Read Length &le;",hyb_len_l)
-        infoTxt=infoTxt + infoDiv.format("Phred Score &le;",phred_score)
+        infoTxt=infoTxt + infoDiv.format("Phred Score &ge;",phred_score)
 
 
         if find_way=="pir":
